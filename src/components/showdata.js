@@ -20,20 +20,22 @@ export class Showdata extends Component {
         super(props);
         this.state = {
             song: null,
+            mal: null
         };
     }
     componentDidMount() {
-        this.fetchSongInfo();
+        this.fetchMalInfo();
     }
     // TODO: Fix CORS
     render() {
-        if (!this.state.song) {
+        if (!this.state.mal) {
             return <div />
         } else {
+            // <iframe src={"https://open.spotify.com/embed/track/" + this.state.song.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             return(
                 <div>
-                    <iframe src={"https://open.spotify.com/embed/track/" + this.state.song.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <h1>Hello {this.state.song}</h1>
+                    
+                    <h1>Hello {this.state.mal.showInfo.mal_id}</h1>
                 </div>
             );
         }
@@ -44,6 +46,16 @@ export class Showdata extends Component {
         const response = await fetch('http://localhost:3000/spotifyreq/' + songname);
         const data = await response.json();
         this.setState({song: data});
+    }
+
+    async fetchMalInfo() {
+        let search = window.location.search;
+        let parameters = new URLSearchParams(search);
+        let code = parameters.get('ID');
+        const response = await fetch('http://localhost:3000/showdata/' + code);
+        const data = await response.json();
+        console.log(JSON.stringify(data));
+        this.setState({mal: data});
     }
 }
 
