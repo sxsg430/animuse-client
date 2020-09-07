@@ -1,18 +1,6 @@
 import React, { Component, useState } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
-} from 'reactstrap';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col,} from 'reactstrap';
+import ShowMeta from './ui_components/showmeta';
 
 
 export class Showdata extends Component {
@@ -34,8 +22,13 @@ export class Showdata extends Component {
             // <iframe src={"https://open.spotify.com/embed/track/" + this.state.song.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             return(
                 <div>
+                    <Container>
+                        <Row>
+                            <Col xs="6" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
+                            <Col xs="auto">Other Page Content Here</Col>
+                        </Row>
+                    </Container>
                     
-                    <h1>Hello {this.state.mal.showInfo.mal_id}</h1>
                 </div>
             );
         }
@@ -54,7 +47,6 @@ export class Showdata extends Component {
         let code = parameters.get('ID');
         const response = await fetch('http://localhost:3000/showdata/' + code);
         const data = await response.json();
-        console.log(JSON.stringify(data));
         this.setState({mal: data});
     }
 }
