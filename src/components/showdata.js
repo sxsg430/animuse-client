@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import {Collapse, Spinner, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col,} from 'reactstrap';
 import ShowMeta from './ui_components/showmeta';
+import SongData from './ui_components/songdata';
 
 
 export class Showdata extends Component {
@@ -30,7 +31,7 @@ export class Showdata extends Component {
                     <Container>
                         <Row>
                             <Col xs="6" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
-                            <Col xs="auto">Other Page Content Here</Col>
+                            <Col xs="8" sm="8"><SongData oplist={this.state.mal.showInfo.music.opening} edlist={this.state.mal.showInfo.music.ending}/></Col>
                         </Row>
                     </Container>
                     
