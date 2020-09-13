@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, Alert } from 'reactstrap';
 import classnames from 'classnames';
 import Spotify from './../musiclib'
 
@@ -12,6 +12,9 @@ const SongData = (props) => {
   
     return (
       <div>
+        <Alert color="warning">
+          Some songs may return incorrect data from Spotify and Discogs. <br />This is either due to poor filtering or incorrect data (like a song using a different title from MAL or the artist is under another name).
+        </Alert>
         <Nav tabs>
           <NavItem>
             <NavLink
