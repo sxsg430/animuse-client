@@ -28,6 +28,7 @@ export class ShowMeta extends Component {
                             <br /><b>Media Type: </b> {this.props.showdata.showInfo.media_type}
                             <br /><b>Origin: </b> {this.props.showdata.showInfo.origin}
                             <br /><b>Episode Count: </b> {this.props.showdata.showInfo.epcount}
+                            <br /><a href={this.props.showdata.showInfo.mal_url}>View on MyAnimeList</a>
                         </p>
                     </CardBody>
                 </Card>
