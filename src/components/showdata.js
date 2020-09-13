@@ -40,12 +40,7 @@ export class Showdata extends Component {
         }
         
     }
-    async fetchSongInfo() {
-        let songname = ''; // TODO: Implement
-        const response = await fetch('http://localhost:3000/spotifyreq/' + songname);
-        const data = await response.json();
-        this.setState({song: data});
-    }
+    
 
     async fetchMalInfo() {
         let search = window.location.search;
