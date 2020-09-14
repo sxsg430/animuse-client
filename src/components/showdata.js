@@ -25,12 +25,11 @@ export class Showdata extends Component {
                 </div>
             )
         } else {
-            // <iframe src={"https://open.spotify.com/embed/track/" + this.state.song.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             return(
                 <div>
-                    <Container>
+                    <Container fluid>
                         <Row>
-                            <Col xs="6" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
+                            <Col xs="4" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
                             <Col xs="8" sm="8"><SongData oplist={this.state.mal.showInfo.music.opening} edlist={this.state.mal.showInfo.music.ending}/></Col>
                         </Row>
                     </Container>

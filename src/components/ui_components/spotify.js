@@ -18,10 +18,8 @@ export class Spotify extends Component {
     async fetchSongInfo(songname) {
         //let songname = ''; // TODO: Implement
         const reg = /#/gi;
-        console.log(songname);
         const response = await fetch('http://localhost:3000/spotifyreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
-        console.log(data);
         this.setState({track: data});
     }
     render() {
@@ -34,7 +32,7 @@ export class Spotify extends Component {
         } else {
             return(
                 <div>
-                    This Song Could Not Be Found on Spotify.
+                    Could not be found on Spotify.
                 </div>
             )
         }

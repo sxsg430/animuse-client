@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import {Spinner, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
-import Spotify from './spotify'
+import Spotify from './spotify';
+import Discogs from './discogs';
 
 
 export class SongCard extends Component {
@@ -31,7 +32,9 @@ export class SongCard extends Component {
                                     </Card>
                                 </div>
                                 <div class="col-xs-2 v-divider"></div>
-                                <div class="col-xs-3">DISCOGS</div>
+                                <div class="col-xs-3">
+                                    <Discogs song={this.props.song} />
+                                </div>
                             </div>
                         </CardText>
                     </CardBody>
