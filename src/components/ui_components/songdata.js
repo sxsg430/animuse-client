@@ -13,7 +13,8 @@ const SongData = (props) => {
     return (
       <div>
         <Alert color="warning">
-          Some songs may return incorrect data from Spotify and Discogs. <br />This is either due to poor filtering or incorrect data (like a song using a different title from MAL or the artist is under another name).
+          Some songs may return incorrect data from Spotify and Discogs.
+          <br />This is either due to poor filtering or incorrect data (like a song using a different title from MAL or the artist is under another name).
         </Alert>
         <Nav tabs>
           <NavItem>

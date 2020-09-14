@@ -10,23 +10,37 @@ export class Spotify extends Component {
     }
 
     componentDidMount() {
-        this.fetchSongInfo(this.props.song);
+        var newSong = this.props.song;
+        this.fetchSongInfo(newSong);
     }
 
 
     async fetchSongInfo(songname) {
         //let songname = ''; // TODO: Implement
-        const response = await fetch('http://localhost:3000/spotifyreq/' + songname);
+        let reg = new RegExp('^#');
+        let reg2 = new RegExp('^\d:\s');
+        console.log(songname);
+        const response = await fetch('http://localhost:3000/spotifyreq?song=' + songname.replace('/', '').replace(reg, '').replace(reg2, ''));
         const data = await response.json();
         console.log(data);
         this.setState({track: data});
     }
     render() {
-        return(
-            <div>
-                <iframe src={"https://open.spotify.com/embed/track/" + this.state.track.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </div>
-        )
+        console.log(this.state.track)
+        if (this.state.track != "FAILED") {
+            return(
+                <div>
+                    <iframe src={"https://open.spotify.com/embed/track/" + this.state.track.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+            )
+        } else {
+            return(
+                <div>
+                    This Song Could Not Be Found on Spotify.
+                </div>
+            )
+        }
+        
     }
 
 
