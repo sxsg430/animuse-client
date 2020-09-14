@@ -25,7 +25,6 @@ export class Spotify extends Component {
         this.setState({track: data});
     }
     render() {
-        console.log(this.state.track)
         if (this.state.track != "FAILED") {
             return(
                 <div>

@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, Alert } from 'reactstrap';
 import classnames from 'classnames';
-import Spotify from './../musiclib'
+import SongCard from './songcard'
 
 const SongData = (props) => {
     const [activeTab, setActiveTab] = useState('1');
@@ -39,7 +39,7 @@ const SongData = (props) => {
             <Row>
               <Col sm="12">
                 {props.oplist.map((songs) => (
-                    <Spotify song={songs} />
+                    <SongCard song={songs} />
                 ))}
               </Col>
             </Row>
@@ -48,7 +48,7 @@ const SongData = (props) => {
           <Row>
               <Col sm="12">
               {props.edlist.map((songs) => (
-                    <Spotify song={songs} />
+                    <SongCard song={songs} />
                 ))}
               </Col>
             </Row>
