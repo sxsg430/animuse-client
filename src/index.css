@@ -11,3 +11,43 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.textbox {
+  word-wrap: break-word;
+  font-size: 12px;
+}
+.songtitle {
+  word-wrap: break-word;
+  font-size: 14px;
+  text-align: center;
+}
+.cardtitle {
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.cardback {
+  background-color: #000000;
+}
+.imgcentre {
+  width: 225px;
+  height: 338px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgdiscog {
+  width: 280px;
+  height: 248px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.txtcentre {
+  text-align: center;
+}

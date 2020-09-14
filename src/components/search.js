@@ -1,58 +1,118 @@
 import React, { Component, useState } from 'react';
-import {Collapse, Spinner, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col,} from 'reactstrap';
-import ShowMeta from './ui_components/showmeta';
+import {Input, Collapse, Alert, Table, Spinner, Button, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col,} from 'reactstrap';
 
 
 export class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            song: null,
-            mal: null
+            loading: true,
+            query: "",
+            rescode: "",
+            response: []
         };
     }
+    
     componentDidMount() {
-        this.fetchMalInfo();
-    }
-    // TODO: Fix CORS
-    render() {
-        if (!this.state.mal) {
-            return(
-                <div>
-                    <Spinner color="primary" /><br />
-                    <p className="text-primary">Loading...</p>
-                </div>
-            )
-        } else {
-            // <iframe src={"https://open.spotify.com/embed/track/" + this.state.song.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            return(
-                <div>
-                    <Container>
-                        <Row>
-                            <Col xs="6" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
-                            <Col xs="auto">Other Page Content Here</Col>
-                        </Row>
-                    </Container>
-                    
-                </div>
-            );
-        }
-        
-    }
-    async fetchSongInfo() {
-        let songname = ''; // TODO: Implement
-        const response = await fetch('http://localhost:3000/spotifyreq/' + songname);
-        const data = await response.json();
-        this.setState({song: data});
+        this.fetchSearch();
     }
 
-    async fetchMalInfo() {
-        let search = window.location.search;
-        let parameters = new URLSearchParams(search);
-        let code = parameters.get('ID');
-        const response = await fetch('http://localhost:3000/showdata/' + code);
+
+    handleSearchChange = (value) => {
+        console.log(value.target.value);
+        this.setState({query: value.target.value});
+    }
+
+    runSearch = () => {
+        this.setState({loading: true})
+        this.fetchSearch();
+        this.forceUpdate();
+    }
+
+
+    static renderSearchTable(shows, rescode) {
+        console.log(shows);
+        if (rescode != "429") {
+            if (shows.length == 0) {
+                return (
+                    <Alert color="warning">No Results. Please enter a search query or try another one.</Alert>
+                    )
+            } else {
+                return (
+                    <Table>
+                       <thead>
+                           <tr>
+                               <th>Cover</th>
+                               <th>Title</th>
+                               <th>Description</th>
+                               <th>Select</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                            {shows.map(show => 
+                                <tr>
+                                    <td><img src={show.image_url} /></td>
+                                    <td>{show.title}</td>
+                                    <td>{show.synopsis}</td>
+                                    <td><a href={"show?ID=" + show.mal_id}><Button color="primary">Select</Button></a></td>
+                                </tr>                                    
+                            )}
+                        </tbody>
+                    </Table>
+                )
+            }
+        } else {
+            return (
+                <Alert color="danger">You have been ratelimited by Jikan, please wait a few seconds before trying again.</Alert>
+            )
+        }
+        
+        
+    }
+
+    /*
+    <Spinner color="primary" /><br />
+                <p className="text-primary">Loading...</p>
+                */
+    render() {
+        let contents = this.state.loading
+            ? <Spinner color="primary" />
+            : Search.renderSearchTable(this.state.response, this.state.rescode);
+        return(
+            <div>
+                <Navbar color="dark" dark expand="md">
+                    <NavbarBrand href="/">AniMuse</NavbarBrand>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink href="/">Search</NavLink>
+                        </NavItem>
+                    </Nav>
+                </Navbar>
+                <Container fluid>
+                    <Row>
+                        <Col xs="5"></Col>
+                        <Col xs="5"><h1>Search</h1></Col>
+                        </Row>
+                    <Row>
+                        <Col xs="10"><Input type="text" placeholder="Search for a show" id="Searchup1" name="Search" value={this.state.query} onChange={this.handleSearchChange} /></Col>
+                        <Col xs="2"><Button color="primary" onClick={this.runSearch}>Search</Button></Col>
+                        <br />
+                        <br />
+                    </Row>
+                    <Row>
+                        <Col xs="auto">{contents}</Col>
+                    </Row>
+                </Container>
+            </div>
+        )
+        
+    }
+
+    async fetchSearch() {
+        const response = await fetch('http://localhost:3000/search?title=' + this.state.query);
         const data = await response.json();
-        this.setState({mal: data});
+        console.log(data);
+        this.setState({response: data.search, rescode: data.response,loading: false});
     }
 }
 

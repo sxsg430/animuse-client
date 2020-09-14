@@ -27,6 +27,14 @@ export class Showdata extends Component {
         } else {
             return(
                 <div>
+                    <Navbar color="dark" dark expand="md">
+                    <NavbarBrand href="/">AniMuse</NavbarBrand>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink href="/">Search</NavLink>
+                        </NavItem>
+                    </Nav>
+                </Navbar>
                     <Container fluid>
                         <Row>
                             <Col xs="4" sm="4"><ShowMeta showdata={this.state.mal} /></Col>

@@ -22,7 +22,6 @@ export class SongCard extends Component {
                         <CardTitle>{this.props.song}</CardTitle>
                         <CardText>
                             <div class="row">
-                                <div class="col-xs-3">
                                     <Card>
                                         <CardBody>
                                             <CardText>
@@ -31,11 +30,9 @@ export class SongCard extends Component {
                                         </CardBody>
                                     </Card>
                                 </div>
-                                <div class="col-xs-2 v-divider"></div>
-                                <div class="col-xs-3">
-                                    <Discogs song={this.props.song} />
+                                <div class="row">
+                                <Discogs song={this.props.song} />
                                 </div>
-                            </div>
                         </CardText>
                     </CardBody>
                 </Card>
