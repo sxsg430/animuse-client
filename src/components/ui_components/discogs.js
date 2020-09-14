@@ -24,7 +24,12 @@ export class Discogs extends Component {
         const reg = /#/gi;
         const response = await fetch('http://localhost:3000/discogsreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
-        this.setState({track: data, genre: data.genre.join(', '), style: data.style.join(', '), label: data.label[0], format: data.format.join(', ')});
+        if (data == "ERROR") {
+            this.setState({track: data});    
+        } else {
+            this.setState({track: data, genre: data.genre.join(', '), style: data.style.join(', '), label: data.label[0], format: data.format.join(', ')});
+        }
+        
     }
     render() {
         if (this.state.track != "ERROR") {
@@ -51,7 +56,13 @@ export class Discogs extends Component {
         } else {
             return(
                 <div>
-                    This Song Could Not Be Found on Discogs.
+                    <Card>
+                        <CardBody>
+                            <CardText>
+                                This Song Could Not Be Found on Discogs.
+                            </CardText>
+                        </CardBody>
+                    </Card>
                 </div>
             )
         }

@@ -32,7 +32,7 @@ export class Spotify extends Component {
         } else {
             return(
                 <div>
-                    Could not be found on Spotify.
+                    This Song Could Not Be Found on Spotify.
                 </div>
             )
         }
