@@ -47,7 +47,9 @@ const SongData = (props) => {
           <TabPane tabId="2">
           <Row>
               <Col sm="12">
-              <p>{props.edlist}</p>
+              {props.edlist.map((songs) => (
+                    <Spotify song={songs} />
+                ))}
               </Col>
             </Row>
           </TabPane>

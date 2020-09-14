@@ -17,10 +17,9 @@ export class Spotify extends Component {
 
     async fetchSongInfo(songname) {
         //let songname = ''; // TODO: Implement
-        let reg = new RegExp('^#');
-        let reg2 = new RegExp('^\d:\s');
+        const reg = /#/gi;
         console.log(songname);
-        const response = await fetch('http://localhost:3000/spotifyreq?song=' + songname.replace('/', '').replace(reg, '').replace(reg2, ''));
+        const response = await fetch('http://localhost:3000/spotifyreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
         console.log(data);
         this.setState({track: data});
