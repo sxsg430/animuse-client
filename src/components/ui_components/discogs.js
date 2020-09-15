@@ -22,7 +22,7 @@ export class Discogs extends Component {
 
     async fetchSongInfo(songname) {
         const reg = /#/gi;
-        const response = await fetch('http://localhost:3000/discogsreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
+        const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/discogsreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
         if (data == "ERROR") {
             this.setState({track: data});    

@@ -31,7 +31,6 @@ export class Search extends Component {
 
 
     static renderSearchTable(shows, rescode) {
-        console.log(shows);
         if (rescode != "429") {
             if (shows.length == 0) {
                 return (
@@ -109,7 +108,7 @@ export class Search extends Component {
     }
 
     async fetchSearch() {
-        const response = await fetch('http://localhost:3000/search?title=' + this.state.query);
+        const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/search?title=' + this.state.query);
         const data = await response.json();
         console.log(data);
         this.setState({response: data.search, rescode: data.response,loading: false});

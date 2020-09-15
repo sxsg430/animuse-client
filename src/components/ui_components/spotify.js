@@ -17,7 +17,7 @@ export class Spotify extends Component {
 
     async fetchSongInfo(songname) {
         const reg = /#/gi;
-        const response = await fetch('http://localhost:3000/spotifyreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
+        const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/spotifyreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
         this.setState({track: data});
     }

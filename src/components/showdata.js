@@ -70,7 +70,7 @@ export class Showdata extends Component {
         let search = window.location.search;
         let parameters = new URLSearchParams(search);
         let code = parameters.get('ID');
-        const response = await fetch('http://localhost:3000/showdata/' + code);
+        const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/showdata/' + code);
         const data = await response.json();
         this.setState({mal: data});
     }
