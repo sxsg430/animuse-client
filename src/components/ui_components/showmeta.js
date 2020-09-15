@@ -1,8 +1,5 @@
-import React, { Component, useState } from 'react';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Row, Container, Collapse
-  } from 'reactstrap';
+import React, { Component } from 'react';
+import {Card, CardImg, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 
 export class ShowMeta extends Component {
     constructor(props) {

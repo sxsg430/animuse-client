@@ -1,6 +1,5 @@
-import React, { Component, useState } from 'react';
-import {Spinner, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
-//import '../../main.css'
+import React, { Component } from 'react';
+import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
 export class Discogs extends Component {
     constructor(props) {

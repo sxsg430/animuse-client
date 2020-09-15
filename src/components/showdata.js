@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import {Collapse, Spinner, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col, Alert} from 'reactstrap';
+import React, { Component } from 'react';
+import { Spinner, Navbar,  NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col, Alert} from 'reactstrap';
 import ShowMeta from './ui_components/showmeta';
 import SongData from './ui_components/songdata';
 

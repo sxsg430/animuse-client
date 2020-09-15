@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, Alert } from 'reactstrap';
+import React, { useState } from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Alert } from 'reactstrap';
 import classnames from 'classnames';
 import SongCard from './songcard'
 

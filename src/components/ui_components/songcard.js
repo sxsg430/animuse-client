@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import {Spinner, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
+import React, { Component } from 'react';
+import {Card, CardText, CardBody, CardTitle } from 'reactstrap';
 import Spotify from './spotify';
 import Discogs from './discogs';
 
