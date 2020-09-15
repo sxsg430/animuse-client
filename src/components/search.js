@@ -14,17 +14,20 @@ export class Search extends Component {
     }
     
     componentDidMount() {
+        // Execute initial search function.
         this.fetchSearch();
     }
 
 
     handleSearchChange = (value) => {
-        console.log(value.target.value);
+        // If the user edits the search textbox, update the state with the new contents.
         this.setState({query: value.target.value});
     }
 
     runSearch = () => {
+        // If the user clicks search, update the loading state to true to enable the loading animation.
         this.setState({loading: true})
+        // Run the search function and forcefully reload the UI to display new results.
         this.fetchSearch();
         this.forceUpdate();
     }
@@ -33,10 +36,12 @@ export class Search extends Component {
     static renderSearchTable(shows, rescode) {
         if (rescode !== "429") {
             if (shows.length === 0) {
+                // If error 429 isn't returned but no results, return an alert asking the user to enter a query.
                 return (
                     <Alert color="warning">No Results. Please enter a search query or try another one.</Alert>
                     )
             } else {
+                // If valid results, return table with rows created using the Map function of the show array.
                 return (
                     <Table>
                        <thead>
@@ -61,6 +66,7 @@ export class Search extends Component {
                 )
             }
         } else {
+            // If 429 error code returned, notify user about being ratelimited.
             return (
                 <Alert color="danger">You have been ratelimited by Jikan, please wait a few seconds before trying again.</Alert>
             )
@@ -69,14 +75,11 @@ export class Search extends Component {
         
     }
 
-    /*
-    <Spinner color="primary" /><br />
-                <p className="text-primary">Loading...</p>
-                */
     render() {
         let contents = this.state.loading
             ? <Spinner color="primary" />
-            : Search.renderSearchTable(this.state.response, this.state.rescode);
+            : Search.renderSearchTable(this.state.response, this.state.rescode); // If loading is true, display animation. Otherwise, show result table.
+            // Return first elements of page, including Navbar, search box and submit button.
         return(
             <div>
                 <Navbar color="dark" dark expand="md">
@@ -108,9 +111,9 @@ export class Search extends Component {
     }
 
     async fetchSearch() {
+        // Query API endpoint with current value from the query state and update state.
         const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/search?title=' + this.state.query);
         const data = await response.json();
-        console.log(data);
         this.setState({response: data.search, rescode: data.response,loading: false});
     }
 }

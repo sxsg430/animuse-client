@@ -5,15 +5,11 @@ export class ShowMeta extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
         }
     }
 
-    toggle = () => {
-        console.log("Toggle")
-        this.setState({ isOpen: !this.state.isOpen })
-    }
     render() {
+        // Take in data from the provided props and use it to construct a card containing a show's title, cover image, description and other metadata.
         return (
             <div>
                 <Card>

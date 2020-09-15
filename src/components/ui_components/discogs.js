@@ -14,13 +14,15 @@ export class Discogs extends Component {
     }
 
     componentDidMount() {
+        // Create internal variable and run function to make API call.
         var newSong = this.props.song;
         this.fetchSongInfo(newSong);
     }
 
 
     async fetchSongInfo(songname) {
-        const reg = /#/gi;
+        const reg = /#/gi; // Strip out '#' characters since they can break the API
+        // Make API call and update the appropriate state data.
         const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/discogsreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
         if (data === "ERROR") {
@@ -31,6 +33,8 @@ export class Discogs extends Component {
         
     }
     render() {
+        // If no errors, create a Reactstrap card containing the necessary information.
+        // This would have included information about the number of copies available to purchase on Discogs but the library I'm using server-side doesn't provide that info with the API call I'm using.
         if (this.state.track !== "ERROR") {
             return(
                 <div>
@@ -54,6 +58,7 @@ export class Discogs extends Component {
                 </div>
             )
         } else {
+            // If an error occured, return a blank card notifying the user.
             return(
                 <div>
                     <Card>

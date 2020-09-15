@@ -11,6 +11,10 @@ const SongData = (props) => {
     }
   
     return (
+      // Returns the list of songs for a given show in tabbed form.
+      // Top Alert is there to notify users that the app may provide no results or the wrong results based on mismatching data or poor filtering.
+      // Separate tabs for Opening and Ending themes.
+      // Uses the Map function for the arrays of Opening and Ending themes and creates the Song Cards for each entry.
       <div>
         <Alert color="warning">
           Some songs may return incorrect data from Spotify and Discogs.

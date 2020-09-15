@@ -17,6 +17,7 @@ export class Showdata extends Component {
     }
     render() {
         if (!this.state.mal) {
+            // If no results currently returned, display loading animation.
             return(
                 <div>
                     <Spinner color="primary" /><br />
@@ -25,6 +26,7 @@ export class Showdata extends Component {
             )
         } else {
             if (this.state.mal.response === "N/A") {
+                // If the state has been set and no error codes returned, display the appropriate UI including embedding the show and song info panels.
                 return(
                     <div>
                         <Navbar color="dark" dark expand="md">
@@ -45,6 +47,7 @@ export class Showdata extends Component {
                     </div>
                 );
             } else {
+                // If any other response code, notify users about the error and some of the potential fixes.
                 return(
                     <div>
                         <Navbar color="dark" dark expand="md">
@@ -66,9 +69,11 @@ export class Showdata extends Component {
     
 
     async fetchMalInfo() {
+        // Get Show ID from the URL's GET Params.
         let search = window.location.search;
         let parameters = new URLSearchParams(search);
         let code = parameters.get('ID');
+        // Query API endpoint for searching and update state.
         const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/showdata/' + code);
         const data = await response.json();
         this.setState({mal: data});

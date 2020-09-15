@@ -15,6 +15,7 @@ export class SongCard extends Component {
         
     }
     render() {
+        // Create the card which encloses both the Spotify and Discogs cards for a given song.
         return(
             <div>
                 <Card>
