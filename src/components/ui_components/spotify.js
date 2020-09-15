@@ -22,10 +22,10 @@ export class Spotify extends Component {
         this.setState({track: data});
     }
     render() {
-        if (this.state.track != "FAILED") {
+        if (this.state.track !== "FAILED") {
             return(
                 <div>
-                    <iframe src={"https://open.spotify.com/embed/track/" + this.state.track.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe title={this.state.track.replace('spotify:track:', '')} src={"https://open.spotify.com/embed/track/" + this.state.track.replace('spotify:track:', '')}  width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 </div>
             )
         } else {

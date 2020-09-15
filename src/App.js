@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Showdata from './components/showdata';
 import Search from './components/search';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (

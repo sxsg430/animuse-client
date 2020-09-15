@@ -23,7 +23,7 @@ export class Discogs extends Component {
         const reg = /#/gi;
         const response = await fetch(window.location.origin.split(':')[0] + ":" + window.location.origin.split(':')[1] + ":" + process.env.REACT_APP_SRVPORT + '/discogsreq?song=' + songname.replace('/', '').replaceAll(reg, ''));
         const data = await response.json();
-        if (data == "ERROR") {
+        if (data === "ERROR") {
             this.setState({track: data});    
         } else {
             this.setState({track: data, genre: data.genre.join(', '), style: data.style.join(', '), label: data.label[0], format: data.format.join(', ')});
@@ -31,7 +31,7 @@ export class Discogs extends Component {
         
     }
     render() {
-        if (this.state.track != "ERROR") {
+        if (this.state.track !== "ERROR") {
             return(
                 <div>
                     <Card>
@@ -51,7 +51,6 @@ export class Discogs extends Component {
                             </CardText>
                         </CardBody>
                     </Card>
-                    <h6></h6>
                 </div>
             )
         } else {

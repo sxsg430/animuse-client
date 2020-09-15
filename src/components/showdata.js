@@ -15,7 +15,6 @@ export class Showdata extends Component {
     componentDidMount() {
         this.fetchMalInfo();
     }
-    // TODO: Fix CORS
     render() {
         if (!this.state.mal) {
             return(
@@ -25,7 +24,7 @@ export class Showdata extends Component {
                 </div>
             )
         } else {
-            if (this.state.mal.response == "N/A") {
+            if (this.state.mal.response === "N/A") {
                 return(
                     <div>
                         <Navbar color="dark" dark expand="md">

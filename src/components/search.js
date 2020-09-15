@@ -31,8 +31,8 @@ export class Search extends Component {
 
 
     static renderSearchTable(shows, rescode) {
-        if (rescode != "429") {
-            if (shows.length == 0) {
+        if (rescode !== "429") {
+            if (shows.length === 0) {
                 return (
                     <Alert color="warning">No Results. Please enter a search query or try another one.</Alert>
                     )
@@ -50,7 +50,7 @@ export class Search extends Component {
                         <tbody>
                             {shows.map(show => 
                                 <tr>
-                                    <td><img src={show.image_url} /></td>
+                                    <td><img src={show.image_url} alt="Cover Art" /></td>
                                     <td>{show.title}</td>
                                     <td>{show.synopsis}</td>
                                     <td><a href={"show?ID=" + show.mal_id}><Button color="primary">Select</Button></a></td>
