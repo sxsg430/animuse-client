@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import {Collapse, Spinner, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col,} from 'reactstrap';
+import {Collapse, Spinner, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavbarText, Container, Row, Col, Alert} from 'reactstrap';
 import ShowMeta from './ui_components/showmeta';
 import SongData from './ui_components/songdata';
 
@@ -25,25 +25,42 @@ export class Showdata extends Component {
                 </div>
             )
         } else {
-            return(
-                <div>
-                    <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">AniMuse</NavbarBrand>
-                    <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/">Search</NavLink>
-                        </NavItem>
-                    </Nav>
-                </Navbar>
-                    <Container fluid>
-                        <Row>
-                            <Col xs="4" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
-                            <Col xs="8" sm="8"><SongData oplist={this.state.mal.showInfo.music.opening} edlist={this.state.mal.showInfo.music.ending}/></Col>
-                        </Row>
-                    </Container>
-                    
-                </div>
-            );
+            if (this.state.mal.response == "N/A") {
+                return(
+                    <div>
+                        <Navbar color="dark" dark expand="md">
+                        <NavbarBrand href="/">AniMuse</NavbarBrand>
+                        <Nav className="mr-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/">Search</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Navbar>
+                        <Container fluid>
+                            <Row>
+                                <Col xs="4" sm="4"><ShowMeta showdata={this.state.mal} /></Col>
+                                <Col xs="8" sm="8"><SongData oplist={this.state.mal.showInfo.music.opening} edlist={this.state.mal.showInfo.music.ending}/></Col>
+                            </Row>
+                        </Container>
+                        
+                    </div>
+                );
+            } else {
+                return(
+                    <div>
+                        <Navbar color="dark" dark expand="md">
+                        <NavbarBrand href="/">AniMuse</NavbarBrand>
+                        <Nav className="mr-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/">Search</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Navbar>
+                        <Alert color="danger">An error has occured. Either this show doesn't exist or you have been ratelimited by Jikan.</Alert>
+                    </div>
+                )
+            }
+            
         }
         
     }

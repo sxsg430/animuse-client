@@ -38,7 +38,7 @@ export class Discogs extends Component {
                     <Card>
                         <CardBody>
                             <div className="imgdiscog"><CardImg src={this.state.track.cover_image}  /></div>
-                            <CardTitle><div className="songtitle">{this.state.track.title}</div></CardTitle>
+                            <div className="songtitle"><CardTitle>{this.state.track.title}</CardTitle></div>
                             <CardText>
                             <div className="textbox">
                                 <p><b>Genre:</b> {this.state.genre}

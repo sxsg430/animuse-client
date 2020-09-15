@@ -14,15 +14,15 @@ code {
 
 .textbox {
   word-wrap: break-word;
-  font-size: 12px;
+  font-size: 14px;
 }
 .songtitle {
   word-wrap: break-word;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
 }
 .cardtitle {
-  font-size: 14px;
+  font-size: 16px;
   word-wrap: break-word;
 }
 .cardback {
@@ -39,10 +39,11 @@ code {
 }
 
 .imgdiscog {
-  width: 280px;
-  height: 248px;
+  width: 60%;
+  height: 60%;
   display: block;
   margin: auto;
+  padding-bottom: 10%;
   text-align: center;
   justify-content: center;
   align-items: center;
